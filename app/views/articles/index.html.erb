@@ -1,0 +1,11 @@
+<% @articles.each do |article| %>
+  <p>内容：<%= simple_format(article.text) %></p>
+  <p>投稿者：<%= simple_format(article.user.nickname) %></p>
+  <%= link_to '詳細', "/articles/#{article.id}", method: :get %>
+  <% if user_signed_in? && current_user.id == article.user_id %>
+    <%= link_to '削除', "/articles/#{article.id}" , method: :delete%>
+  <% end %>
+
+<% end %>
+
+<%= paginate(@articles) %>

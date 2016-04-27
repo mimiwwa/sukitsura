@@ -1,0 +1,9 @@
+<div class="contents row" >
+  <p><%= @nickname %>さんの投稿一覧</p>
+  <% @articles.each do |article| %>
+    <div class="content_post" style="">
+      <%= simple_format(article.text) %>
+    </div>
+  <% end %>
+<%= paginate(@articles) %>
+</div>
