@@ -49,4 +49,5 @@ gem 'pry-rails'
 gem 'devise'
 gem 'paperclip'
 gem 'kaminari'
+gem 'twitter' ,'4.8.1' 
 
