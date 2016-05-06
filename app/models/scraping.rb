@@ -17,7 +17,13 @@ class Scraping
     results = client.search(query, :count => 100, :result_type => "recent",  exclude: "retweets", since_id: since_id)
 
     results.attrs[:statuses].each do |tweet|
-      article= Article.where(text: tweet[:text],user_id: '1',tw_username: tweet[:user][:name],tw_userno: tweet[:user][:id_str],tw_userid: tweet[:user][:screen_name],tw_id: tweet[:id_str]).first_or_initialize
+      article= Article.where(text: tweet[:text]).first_or_initialize
+      article.user_id ='1'
+      article.tw_username = tweet[:user][:name]
+      article.tw_userno = tweet[:user][:id_str]
+      article.tw_userid = tweet[:user][:screen_name]
+      article.tw_id = tweet[:id_str]
+      article.tw_icon =tweet[:user][:profile_image_url_https]
       article.save
     end
 

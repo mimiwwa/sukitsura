@@ -1,9 +1,9 @@
 <div class="contents row" >
-  <p><%= @nickname %>さんの投稿一覧</p>
+<div class="bs-component">
+  <h2><i class="fa fa-pencil" ></i><%= @nickname %>さんの投稿一覧</h2>
   <% @articles.each do |article| %>
-    <div class="content_post" style="">
+   <div class="jumbotron">
       <%= simple_format(article.text) %>
-    </div>
+  </div>
   <% end %>
 <%= paginate(@articles) %>
-</div>

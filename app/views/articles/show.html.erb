@@ -1,43 +1,67 @@
-<div class ="contents row">
-  <div class="content_post" >
-    <% if user_signed_in? && current_user.id == @article.user_id %>
-      <div class="more">
-      <ul class="more_list">
-       
-        <li>
-          <%= link_to '削除', "/articles/#{@article.id}", method: :delete %>
-        </li>
-      </ul>
-    </div>
+<div class="bs-component">
+  <div class="jumbotron">
+    <% if @article.user_id == 1 %>
+
+      <h3>
+      <img src= <%= @article.tw_icon %> alt= "<%= @article.tw_username %>さんの画像" align="left" hspace="10">
+        <%= @article.tw_username %> <br>
+     <small><a href='https://twitter.com/<%= @article.tw_userid %>/status/<%= @article.tw_id %>/'>    <i class="fa fa-twitter"></i> @<%= @article.tw_userid %></a></small></h3>
+      <br clear="left">
+      <small><i class="glyphicon glyphicon-time"></i>  <%= time_ago_in_words @article.updated_at %> before</small>
+    <% else %>
+      <h3>
+      <img src= <%= @article.user.avatar.url(:thumb) %> alt= "<%= @article.user.nickname %>さんの画像" align="middle">
+      <%= @article.user.nickname %></h3>
+      <small><i class="glyphicon glyphicon-time"></i>  <%= time_ago_in_words @article.updated_at %> before</small>
     <% end %>
-    <%= simple_format(@article.text) %>
-    <span class="name">
-      <a href="/users/<%= @article.user.id %>">
-        <span>投稿者</span><%= @article.user.nickname %>
-      </a>
-    </span>
+
+    <p><%= simple_format(@article.text) %></p>
+<br>
+        <% if user_signed_in? && @article.liked?(current_user) %>
+            <%= link_to   '共感した！', like_path(article_id: @article.id), method: :delete , :class => 'btn btn-default btn btn-primary btn-lg' %> 
+        <% else %>
+            <%= link_to '共感する！', likes_path(article_id: @article.id), method: :post , :class => 'btn btn-default btn btn-primary btn-lg' %>
+        <% end %>
+<br><br><br>
+<p>        <i class="fa fa-comment-o"> </i>  <%= @article.comments.count %>
+<span style="margin-right: 2em;"></span>
+<i class="fa fa-heart"></i>  <%= @article.likes.count %>
+</p>
+      <% if user_signed_in? && current_user.id == @article.user_id %>
+        <%= link_to '削除する', "/articles/#{@article.id}" , method: :delete %>
+      <% end %>
   </div>
 </div>
 
+<!-- ここからコメント -->
+ <div class="list-group">
+<h3><i class="fa fa-comments-o"></i>コメント一覧</h3>
+  <% if @comments %>
+    <% @comments.each do |comment| %>
+      <p class="list-group-item">
+        <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+        <%= comment.text %>
+      </p>
+    <% end %>
+<% end %>
+</div>
+
+<!-- ここからフォーム -->
 <div class="container">
-  <!-- ここからフォーム -->
     <% if current_user %>
       <%= form_tag("/articles/#{@article.id}/comments", method: :post) do %>
-        <textarea cols="30" name="text" placeholder="コメントする" rows="2"></textarea>
-        <input type="submit" value="SENT">
+        <textarea class="form-control" cols="30" name="text" placeholder="コメントする" rows="5" ></textarea>
+        <br>
+        <input type="submit" value="送信する" class="btn btn-default btn btn-primary btn-lg pull-right" >
       <% end %>
     <% end %>
 </div>
 
 
 
-<h4>＜コメント一覧＞</h4>
-  <% if @comments %>
-    <% @comments.each do |comment| %>
-      <p>
-        <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
-        <%= comment.text %>
-      </p>
-    <% end %>
-<% end %>
+
+
+
+
+
 

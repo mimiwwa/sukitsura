@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504064519) do
+ActiveRecord::Schema.define(version: 20160504110318) do
 
   create_table "articles", force: :cascade do |t|
     t.text     "text",        limit: 65535
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160504064519) do
     t.string   "tw_username", limit: 191
     t.string   "tw_userid",   limit: 191
     t.string   "tw_id",       limit: 191
+    t.string   "tw_icon",     limit: 191
   end
 
   create_table "comments", force: :cascade do |t|
@@ -30,6 +31,13 @@ ActiveRecord::Schema.define(version: 20160504064519) do
     t.text     "text",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "article_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,6 +54,10 @@ ActiveRecord::Schema.define(version: 20160504064519) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "nickname",               limit: 191
+    t.string   "avatar_file_name",       limit: 191
+    t.string   "avatar_content_type",    limit: 191
+    t.integer  "avatar_file_size",       limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

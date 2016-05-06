@@ -49,5 +49,10 @@ gem 'pry-rails'
 gem 'devise'
 gem 'paperclip'
 gem 'kaminari'
-gem 'twitter' ,'4.8.1' 
+gem 'kaminari-bootstrap'
+gem 'twitter' ,'4.8.1'
+gem "font-awesome-rails"
+gem 'devise-bootstrap-views'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 

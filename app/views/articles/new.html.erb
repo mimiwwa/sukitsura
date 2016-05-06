@@ -1,10 +1,13 @@
+
+
 <div>
     <%= form_for @articles do |f| %>
       <h3>
         投稿する
       </h3>
-      <%= f.text_field :text, placeholder: "今の気持ちを入力してください" %>
 
-      <%= f.submit "SENT", class: "btn btn-primary withripple" %>
+      <%= f.text_field :text, placeholder: "今の気持ちを入力してください" ,class: "form-control",cols:"50", rows:"10", autofocus:"true" %>
+      </br>
+      <%= f.submit "SENT", class: "btn btn-primary" %>
       <% end %>
 </div>

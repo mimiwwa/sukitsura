@@ -1,0 +1,32 @@
+<header>
+  <div class="bs-component">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <a class="navbar-brand" href="/">sukisugi</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <li><a href="/users/<%= current_user.id %>"><%= current_user.nickname %> さんのページ</a></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "ログイン", new_user_session_path, class: 'post' %></li>
+              <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
+            <% end %>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="post" href="/articles/new"><button type="button" class="btn btn-primary"><i class="fa fa-pencil" ></i> 投稿する</button></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

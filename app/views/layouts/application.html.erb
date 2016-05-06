@@ -1,42 +1,60 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Sukisugiru</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang='ja'>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Sukisugi<%= yield :title %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  </head>
+  <body>
+    <script type='text/javascript' charset='utf-8'>
+      $(function(){
+        $.material.init();
+      });
+    </script>
+    <%= render partial: 'common/header' %>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-12'>
+<!-- ユーザー認証が成功したかどうか -->
+      <% if notice.present? %>
+        <div class="alert alert-dismissable alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <p><%= notice %></p>
+        </div>
+      <% end %>
 
-<header>
-<nav class="navbar navbar-default">
-  <div class="navbar-header">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <h1><a class="navbar-brand" href="/">Sukisugiru</a></h1>
+      <% if alert.present? %>
+        <div class="alert alert-dismissable alert-danger">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <p><%= alert %></p>
+        </div>
+      <% end %>
+
+          <%= yield %>
+        </div>
       </div>
-
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <% if user_signed_in? %>
-            <li><%= current_user.nickname %> さん、ようこそ！</li>
-            <li><a href="/users/<%= current_user.id %>">マイページ</a></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to "ログイン", new_user_session_path, class: 'post' %></li>
-            <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
-          <% end %>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-          <li><a class="post" href="/articles/new"><button type="button" class="btn btn-primary">投稿する</button></a></li>
-          </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </div>
-</nav>
-</header>
-<%= yield %>
-
-</body>
+      <footer class='row text-center'>
+        <p>(C) ++++ 2016</p>
+      </footer>
+    </div>
+  </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
