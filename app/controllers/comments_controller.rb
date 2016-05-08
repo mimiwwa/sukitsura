@@ -5,6 +5,14 @@ class CommentsController < ApplicationController
   end
 
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to "/articles/#{@comment.article.id}"
+  end
+
+
+
   private
   def comment_params
     params.permit(:text, :article_id)

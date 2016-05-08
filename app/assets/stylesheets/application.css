@@ -16,3 +16,10 @@
  *= require font-awesome
  *= require devise_bootstrap_views
  */
+
+ .navbar-brand {
+  background: url("logo.png") no-repeat left center;
+  background-size: contain;
+  height: 80px;
+  width: 250px;
+}

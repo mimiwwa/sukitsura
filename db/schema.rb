@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504110318) do
+ActiveRecord::Schema.define(version: 20160508043152) do
 
   create_table "articles", force: :cascade do |t|
     t.text     "text",        limit: 65535
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160504110318) do
     t.string   "tw_userid",   limit: 191
     t.string   "tw_id",       limit: 191
     t.string   "tw_icon",     limit: 191
+    t.integer  "like_count",  limit: 4
   end
 
   create_table "comments", force: :cascade do |t|
@@ -58,6 +59,10 @@ ActiveRecord::Schema.define(version: 20160504110318) do
     t.string   "avatar_content_type",    limit: 191
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
+    t.string   "confirmation_token",     limit: 191
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email",      limit: 191
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

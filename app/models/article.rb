@@ -3,9 +3,7 @@ class Article < ActiveRecord::Base
   has_many :comments 
   has_many :likes
 
-  def liked?(user)
-    likes.exists?(user_id: user.id)
+  def maxliked?(user)
+    likes.where(user_id: user.id).count > 100 
   end
-
-
 end

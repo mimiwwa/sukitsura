@@ -20,9 +20,10 @@ html {
       -ms-text-size-adjust: 100%;
 }
 
-body {
-  margin: 0;
-}
+
+body { padding-top: 80px; }
+
+
 
 article,
 aside,
@@ -2314,7 +2315,7 @@ body {
   font-size: 16px;
   line-height: 1.42857;
   color: #333;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 
 input,
@@ -5775,6 +5776,9 @@ tbody.collapse.in {
   font-size: 20px;
   line-height: 22px;
 }
+
+
+
 .navbar-brand:hover, .navbar-brand:focus {
   text-decoration: none;
 }
@@ -6438,7 +6442,7 @@ a.badge:hover, a.badge:focus {
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eee;
+  background-color: #f0f0f0;
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -6446,8 +6450,8 @@ a.badge:hover, a.badge:focus {
 }
 .jumbotron p {
   margin-bottom: 15px;
-  font-size: 24px;
-  font-weight: 200;
+  font-size: 20px;
+  font-weight: 100;
 }
 .jumbotron > hr {
   border-top-color: #d5d5d5;
@@ -8364,7 +8368,7 @@ a {
 }
 
 .navbar-default {
-  background-color: #f3d4df;
+  background-color: #ffffff;
 }
 
 .navbar-inverse {

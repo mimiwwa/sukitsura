@@ -1,32 +1,44 @@
 <header>
-  <div class="bs-component">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-            <a class="navbar-brand" href="/">sukisugi</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <% if user_signed_in? %>
-              <li><a href="/users/<%= current_user.id %>"><%= current_user.nickname %> さんのページ</a></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-            <% else %>
-              <li><%= link_to "ログイン", new_user_session_path, class: 'post' %></li>
-              <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
-            <% end %>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a class="post" href="/articles/new"><button type="button" class="btn btn-primary"><i class="fa fa-pencil" ></i> 投稿する</button></a></li>
-          </ul>
-        </div>
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"></a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
       </div>
-    </nav>
+      <div class="navbar-collapse collapse" id="navbar-main">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href "#show_modal" data-toggle="modal" role="button"><i class="fa fa-question-circle-o"></i>「すきつら」とは</a></li>
+          <% if user_signed_in? %>
+            <li><a href="/users/<%= current_user.id %>"><i class="glyphicon glyphicon-user"></i><%= current_user.nickname %> さんのページ</a></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "ログイン", new_user_session_path, class: 'post' %></li>
+            <li class="active"><%= link_to "新規登録", new_user_registration_path, class: 'post ' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
+
+
+<!-- モーダル内容 -->
+<div id="show_modal" class ="modal hide fade" aria-hidden="true" aria-labelledby="modal_label" role="dialog" style="display: none; " tabindex="-1">
+  <div class="modal-header">
+    <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+    <h3 id="modal_label">モーダル画面のタイトル</h3>
+  <div class="modal-body">
+    <h4>テーマ</h4>
+    <p>メッセージ</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Close</button>
+    <button class="btn btn-primary">Change</button>
+  </div>
+  </div>
+</div>
 </header>

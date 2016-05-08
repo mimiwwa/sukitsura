@@ -55,4 +55,5 @@ gem "font-awesome-rails"
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'whenever', require: false
 

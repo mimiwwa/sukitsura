@@ -1,9 +1,57 @@
+
+
+<h2><%= @nickname %>さんの投稿一覧</h2>
+
+
+<% if user_signed_in? && current_user.id == @user_id %>
+<a href="/users/edit" class="btn btn-default pull-right"> <i class="fa fa-pencil" ></i> プロフィールを編集する</a>
+<% end %>
+
 <div class="contents row" >
 <div class="bs-component">
-  <h2><i class="fa fa-pencil" ></i><%= @nickname %>さんの投稿一覧</h2>
+
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>投稿した数</th>
+      <th>共感した数</th>
+      <th>共感された数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <%= @ariticle_count %> </td>
+      <td> <%= @likes %></td>
+      <td> <%= @liked %></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+
+<div class="contents row" >
+<div class="bs-component">
+  
   <% @articles.each do |article| %>
-   <div class="jumbotron">
-      <%= simple_format(article.text) %>
-  </div>
+    <div class="jumbotron">
+      <h3>
+        <img src= <%= article.user.avatar.url(:thumb) %> alt= "<%= article.user.nickname %>さんの画像" align="middle">
+        <%= article.user.nickname %></h3>
+        <small><%= time_ago_in_words article.updated_at %> 前</small>
+        <%= simple_format(article.text) %>
+        <a href='/articles/<%= article.id %>'><i class="fa fa-comment-o"> </i>  <%= article.comments.count %><span style="margin-right: 2em;"></span>  
+          <i class="fa fa-heart"></i> <%= article.likes.count %>
+          <span class="pull-right">コメントを見る・共感する</span>
+        </a> 
+          <% if user_signed_in? && current_user.id == article.user_id %>
+          <br><br>
+            <i class="fa fa-times"></i><%= link_to '削除する', "/articles/#{article.id}" , method: :delete%>
+          <% end %>
+    </div>
   <% end %>
+</div>
+</div>
+
 <%= paginate(@articles) %>

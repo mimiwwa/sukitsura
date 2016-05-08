@@ -7,7 +7,7 @@
         <%= @article.tw_username %> <br>
      <small><a href='https://twitter.com/<%= @article.tw_userid %>/status/<%= @article.tw_id %>/'>    <i class="fa fa-twitter"></i> @<%= @article.tw_userid %></a></small></h3>
       <br clear="left">
-      <small><i class="glyphicon glyphicon-time"></i>  <%= time_ago_in_words @article.updated_at %> before</small>
+      <small><i class="glyphicon glyphicon-time"></i>  <%= time_ago_in_words @article.updated_at %><span style="margin-right: 1em;"></span>前</small>
     <% else %>
       <h3>
       <img src= <%= @article.user.avatar.url(:thumb) %> alt= "<%= @article.user.nickname %>さんの画像" align="middle">
@@ -17,45 +17,61 @@
 
     <p><%= simple_format(@article.text) %></p>
 <br>
-        <% if user_signed_in? && @article.liked?(current_user) %>
+<p>        <i class="fa fa-comment-o"> </i>  <%= @article.comments.count %>
+<span style="margin-right: 2em;"></span>
+<i class="fa fa-heart"></i>  <%= @article.likes.count %>
+
+      <% if user_signed_in? && current_user.id == @article.user_id %>
+        <small><%= link_to '削除する', "/articles/#{@article.id}" , method: :delete , :class =>'text-muted pull-right',data: { confirm: '削除しますか？' } %></small>
+      <% end %> </p>
+
+      <% if user_signed_in? && @article.maxliked?(current_user) %>
             <%= link_to   '共感した！', like_path(article_id: @article.id), method: :delete , :class => 'btn btn-default btn btn-primary btn-lg' %> 
         <% else %>
             <%= link_to '共感する！', likes_path(article_id: @article.id), method: :post , :class => 'btn btn-default btn btn-primary btn-lg' %>
         <% end %>
-<br><br><br>
-<p>        <i class="fa fa-comment-o"> </i>  <%= @article.comments.count %>
-<span style="margin-right: 2em;"></span>
-<i class="fa fa-heart"></i>  <%= @article.likes.count %>
-</p>
-      <% if user_signed_in? && current_user.id == @article.user_id %>
-        <%= link_to '削除する', "/articles/#{@article.id}" , method: :delete %>
-      <% end %>
   </div>
 </div>
 
 <!-- ここからコメント -->
- <div class="list-group">
+<div class="list-group">
 <h3><i class="fa fa-comments-o"></i>コメント一覧</h3>
-  <% if @comments %>
+  <% if @comments.present? %>
     <% @comments.each do |comment| %>
-      <p class="list-group-item">
-        <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
-        <%= comment.text %>
-      </p>
+      <div class="list-group-item">
+        <p><strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+          <%= comment.text %>
+          <% if user_signed_in? && current_user.id == comment.user_id %>
+            <small><%= link_to '削除する', "/articles/#{@article.id}/comments/#{comment.id}" , method: :delete ,:class =>'text-muted pull-right', data: { confirm: '削除しますか？' } %>
+            </small>
+          <% end %>
+          <small class="text-muted"><span style="margin-right: 1em;"></span><%= time_ago_in_words comment.updated_at %>前</small>
+        </p>
+      </div>
     <% end %>
-<% end %>
+  <% else %>
+    <p class="text-muted">まだコメントはありません。</p>
+  <% end %>
 </div>
 
 <!-- ここからフォーム -->
-<div class="container">
-    <% if current_user %>
-      <%= form_tag("/articles/#{@article.id}/comments", method: :post) do %>
-        <textarea class="form-control" cols="30" name="text" placeholder="コメントする" rows="5" ></textarea>
-        <br>
-        <input type="submit" value="送信する" class="btn btn-default btn btn-primary btn-lg pull-right" >
+
+
+    <%= form_tag("/articles/#{@article.id}/comments", method: :post) do %>
+      <textarea class="form-control" cols="30" name="text" placeholder="コメントする" rows="2" ></textarea>
+      <br>
+      <% if current_user %>
+        <input type="submit" value="送信する" class="btn btn-primary btn-lg pull-right" >
+      <% else %>
+        <input type="submit" value="送信する" class="btn btn-primary disabled btn-lg pull-right" >
+          <p class="text-muted">
+            <a href="/users/sign_in">ログイン</a>するとコメントを投稿できます。<br>
+            初めての方は<a href="/users/sign_up">新規登録</a>をお願いします＞＜
+          </p>
       <% end %>
     <% end %>
-</div>
+
+
 
 
 

@@ -1,26 +1,53 @@
+  <div class="row">
+    <div class="col-xs-12">
+    <br>
+      <%= form_for @article do |f| %>
+      <%= f.text_area :text, placeholder: "好きすぎてつらい気持ちを入力してください" ,class: "form-control control-label"%>
+      </div>
+  </div>
+      
+  <div class="row">
+    <div class="col-xs-10">
+    <% unless user_signed_in? %>
+      <p class="text-muted"><small><a href="/users/sign_in">ログイン</a>すると投稿できます。<br>初めての方は<a href="/users/sign_up">新規登録</a>をお願いします＞＜</small></p>
+    <% end %>
+    </div>
+    <div class="col-xs-2">
 
-
+      <% if current_user %>
+        <%= f.submit "投稿する", class: "btn btn-primary pull-right" %>
+      <% else %>
+        <input type="submit" value="投稿する" class="btn btn-primary disabled pull-right" >
+      <% end %>
+    </div>
+  </div>
+      <% end %>
+<br>
 <% @articles.each do |article| %>
   <div class="bs-component">
     <div class="jumbotron">
     <% if article.user_id == 1 %>
-
-    <h3>
-    <img src= <%= article.tw_icon %> alt= "<%= article.tw_username %>さんの画像" align="middle">
-    <%= article.tw_username %></h3>
-    <small><%= time_ago_in_words article.updated_at %> before</small>
+      <h3>
+      <img src= <%= article.tw_icon %> alt= "<%= article.tw_username %>さんの画像" align="left">
+      <%= article.tw_username %><br>
+     <small><a href='https://twitter.com/<%= article.tw_userid %>/status/<%= article.tw_id %>/'>    <i class="fa fa-twitter"></i> @<%= article.tw_userid %></a></small></h3>
+      <small><%= time_ago_in_words article.updated_at %> 前</small>
     <% else %>
-    <h3>
-    <img src= <%= article.user.avatar.url(:thumb) %> alt= "<%= article.user.nickname %>さんの画像" align="middle">
-    <%= article.user.nickname %></h3>
-    <small><%= time_ago_in_words article.updated_at %> before</small>
-
+      <h3>
+      <img src= <%= article.user.avatar.url(:thumb) %> alt= "<%= article.user.nickname %>さんの画像" align="middle">
+      <%= article.user.nickname %></h3>
+      <small><%= time_ago_in_words article.updated_at %> 前</small>
     <% end %>
-    <p><%= simple_format(article.text) %></p>
-     <%= link_to '詳細', "/articles/#{article.id}", method: :get %>
-    <% if user_signed_in? && current_user.id == article.user_id %>
-      <%= link_to '削除', "/articles/#{article.id}" , method: :delete%>
-    <% end %>
+      <p><%= article.text %></p>
+      <a href='/articles/<%= article.id %>'><i class="fa fa-comment-o"> </i>  <%= article.comments.count %><span style="margin-right: 2em;"></span>  
+        <i class="fa fa-heart"></i> <%= article.likes.count %>
+        <span class="pull-right">コメントを見る・共感する</span>
+      </a>
+        <% if user_signed_in? && current_user.id == article.user_id %>
+        <br><br>
+          <i class="fa fa-times"></i>
+          <%= link_to '削除する', "/articles/#{article.id}" , method: :delete%>
+        <% end %>
     </div>
   </div>
 

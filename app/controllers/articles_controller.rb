@@ -1,13 +1,16 @@
 class ArticlesController < ApplicationController
 
-  before_action :move_to_index, except: :index
+  
+  before_action :authenticate_user!, only: [:new,:destroy]
+
 
   def index
+    @article =Article.new
     @articles = Article.includes(:user).all.order("updated_at DESC").page(params[:page]).per(20)
   end
 
   def new
-    @articles =Article.new
+    @article =Article.new
   end
 
   def create
