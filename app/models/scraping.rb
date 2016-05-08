@@ -16,6 +16,7 @@ class Scraping
     since_id = Article.where(user_id: 1).last.tw_id
     results = client.search(query, :count => 100, :result_type => "recent",  exclude: "retweets", since_id: since_id)
 
+
     results.attrs[:statuses].each do |tweet|
       article= Article.where(text: tweet[:text]).first_or_initialize
       article.user_id ='1'
