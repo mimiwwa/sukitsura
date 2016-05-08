@@ -21,8 +21,8 @@ config.action_mailer.smtp_settings = {
   :address => "smtp.gmail.com",
   :port => 587,
   :domain => 'smtp.gmail.com',
-  :user_name => "mirutecom@gmail.com ", #gmailアドレス
-  :password => "aoyama1choume", #gmailパスワード
+  :user_name => "mirute.com@gmail.com ", #gmailアドレス
+  :password => "yakuouji305", #gmailパスワード
   :authentication => 'login',
 }
 
