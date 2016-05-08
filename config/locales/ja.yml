@@ -206,4 +206,7 @@ ja:
       short: "%y/%m/%d %H:%M"
     pm: 午後
 
+  views:
+    pagination:
 
+      truncate: "..."

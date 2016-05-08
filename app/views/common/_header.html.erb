@@ -12,33 +12,15 @@
       </div>
       <div class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href "#show_modal" data-toggle="modal" role="button"><i class="fa fa-question-circle-o"></i>「すきつら」とは</a></li>
+            <li><a href="/about"><i class="fa fa-question-circle-o"></i>「すきつら」とは</a></li>
           <% if user_signed_in? %>
             <li><a href="/users/<%= current_user.id %>"><i class="glyphicon glyphicon-user"></i><%= current_user.nickname %> さんのページ</a></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           <% else %>
-            <li><%= link_to "ログイン", new_user_session_path, class: 'post' %></li>
+            <li><%= link_to "Login", new_user_session_path, class: 'post' %></li>
             <li class="active"><%= link_to "新規登録", new_user_registration_path, class: 'post ' %></li>
           <% end %>
         </ul>
       </div>
     </div>
   </div>
-
-
-<!-- モーダル内容 -->
-<div id="show_modal" class ="modal hide fade" aria-hidden="true" aria-labelledby="modal_label" role="dialog" style="display: none; " tabindex="-1">
-  <div class="modal-header">
-    <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
-    <h3 id="modal_label">モーダル画面のタイトル</h3>
-  <div class="modal-body">
-    <h4>テーマ</h4>
-    <p>メッセージ</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal">Close</button>
-    <button class="btn btn-primary">Change</button>
-  </div>
-  </div>
-</div>
-</header>

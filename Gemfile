@@ -57,3 +57,6 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'whenever', require: false
 
+group :production, :staging do
+  gem 'rails_12factor'
+end
