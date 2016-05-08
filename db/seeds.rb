@@ -13,5 +13,5 @@ require "csv"
 articles_csv = CSV.readlines("db/articles.csv")
 articles_csv.shift
 articles_csv.each do |row|
-  Article.create(text: row[1], user_id: row[4], tw_userno: row[5], tw_username: row[6], tw_userid: row[7], tw_id: row[8])
+  Article.create(text: row[1], user_id: row[4], tw_userno: row[5], tw_username: row[6], tw_userid: row[7], tw_id: row[8], tw_icon: row[9])
 end
