@@ -18,7 +18,9 @@
  */
 
  .navbar-brand {
-  background: image-url("logo.png") no-repeat left center;
+  background-image: image-url("logo.png");
+  background-repeat: no-repeat;
+  background-position: left center;
   background-size: contain;
   height: 80px;
   width: 250px;
