@@ -19,14 +19,14 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :output, {:error => 'log/error.log', :standard => 'log/cron.log'}
-# 5分毎に実行するスケジューリング
-every 5.minutes do
-  runner 'Scraping.tweetscraping'
-end
+# set :output, {:error => 'log/error.log', :standard => 'log/cron.log'}
+# # 5分毎に実行するスケジューリング
+# every 5.minutes do
+#   runner 'Scraping.tweetscraping'
+# end
 
 
-# 10分毎に実行するスケジューリング
-every 10.minutes do
-  runner 'Bot.tweetbot'
-end
+# # 10分毎に実行するスケジューリング
+# every 10.minutes do
+#   runner 'Bot.tweetbot'
+# end
