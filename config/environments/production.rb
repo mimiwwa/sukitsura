@@ -76,4 +76,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # GAのトラッキングID追加
+  GA.tracker = "UA-77409071-1"
 end
+
+

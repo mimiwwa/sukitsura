@@ -59,3 +59,5 @@ gem 'whenever', require: false
 group :production, :staging do
   gem 'rails_12factor'
 end
+
+gem 'google-analytics-rails'
