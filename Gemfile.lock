@@ -93,6 +93,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    meta-tags (2.1.0)
+      actionpack (>= 3.0.0)
     method_source (0.8.2)
     mime-types (3.0)
       mime-types-data (~> 3.2015)
@@ -213,6 +215,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   kaminari-bootstrap
+  meta-tags
   mysql2 (= 0.3.18)
   paperclip
   pry-rails
