@@ -13,7 +13,7 @@ class Bot
     comments = Comment.joins(:article).where('comments.created_at >= ?', ten_min_before).merge(Article.where(user_id: 1))
 
     comments.each do |comment|
-      tweettext="@" + comment.article.tw_userid.to_s + "さんの好きすぎてつらい気持ちに、共感のコメントがつきました。「" + comment.text[0, 15] + "… http://localhost:3000/articles/" + comment.article.id.to_s
+      tweettext="@" + comment.article.tw_userid.to_s + "さんの好きすぎてつらい気持ちに、共感のコメントがつきました。「" + comment.text[0, 15] + "… http://sukitsura.herokuapp.com/articles/" + comment.article.id.to_s
 
       client.update(tweettext)
       end
