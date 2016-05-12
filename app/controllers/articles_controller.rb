@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     @comments = @article.comments.includes(:user)
+    @article_title = article_title+"さんの好きすぎて辛い想い"
   end
 
 
@@ -39,6 +40,16 @@ class ArticlesController < ApplicationController
 
     def move_to_index
       redirect_to action: :index unless user_signed_in?
+    end
+
+    def article_title
+      article_title=""
+      if @article.user_id == 1
+        article_title = @article.tw_username
+      else
+        article_title = @article.user.nickname
+      end
+      return article_title
     end
 
 end
