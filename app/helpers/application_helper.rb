@@ -11,7 +11,7 @@ module ApplicationHelper
       title: :title,
       type: "website",
       url: request.original_url,
-      image: 'image_url(Settings.site.meta.ogp.image_path)',
+      image: 'assets/about_pic.jpg',
       site_name: '好きすぎて辛い想い共有アプリ「すきつら」',
       description: :description,
       locale: 'ja_JP'
