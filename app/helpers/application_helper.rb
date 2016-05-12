@@ -4,7 +4,8 @@ module ApplicationHelper
     site: 'すきつら',
     separator: '-',
     title: '',
-    charset: 'utf-8'
+    charset: 'utf-8',
+    reverse: true
   }
 end
 end
