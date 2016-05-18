@@ -1,0 +1,9 @@
+smtp_settings:
+    user_name: 'app50506782@heroku.com'
+    password: 'tmw1icgw0003'
+
+twitter:
+    consumer_key: 'GEKxKybmHT8iV70HLB6ws9w8E'
+    consumer_secret: '1YwWMBEnrs3xg3ENoUcOOK1pLJLp8DxaZjJVfggd9Ca4HwTwSk'
+    oauth_token: '2334724627-zxO0B3bkBjivs0vNPJC9B509hlI6tB1FpspcpJ9'
+    oauth_token_secret: 'wHCt1KG5Wold6uWLOtMwJnJQywDIfxHB1J7k3w675AYJ6'

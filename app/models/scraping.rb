@@ -5,10 +5,10 @@ class Scraping
     day[1] = day[0].strftime("%Y%m%d_%H%M%S")
 
     client = Twitter::Client.new(
-      :consumer_key => "GEKxKybmHT8iV70HLB6ws9w8E",
-      :consumer_secret => "1YwWMBEnrs3xg3ENoUcOOK1pLJLp8DxaZjJVfggd9Ca4HwTwSk",
-      :oauth_token => "2334724627-zxO0B3bkBjivs0vNPJC9B509hlI6tB1FpspcpJ9",
-      :oauth_token_secret => "wHCt1KG5Wold6uWLOtMwJnJQywDIfxHB1J7k3w675AYJ6"
+      :consumer_key => Settings.twitter[:consumer_key],
+      :consumer_secret => Settings.twitter[:consumer_secret],
+      :oauth_token => Settings.twitter[:oauth_token],
+      :oauth_token_secret => Settings.twitter[:oauth_token_secret]
     )
 
     query = "好きすぎてつらい+彼氏 OR 好きすぎてつらい+恋人 OR 好きすぎてつらい+彼女 OR 好きすぎてつらい+片思い OR 好きすぎてツラい+彼氏 OR 好きすぎてツラい+恋人 OR 好きすぎてツラい+彼女 OR 好きすぎてツラい+片思い OR 好きすぎて辛い+彼氏 OR 好きすぎて辛い+恋人 OR 好きすぎて辛い+彼女 OR 好きすぎて辛い+片思い"

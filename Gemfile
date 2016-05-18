@@ -62,3 +62,4 @@ end
 
 gem 'google-analytics-rails'
 gem 'meta-tags'
+gem 'config'
